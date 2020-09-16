@@ -3,6 +3,12 @@ export const initialState = {
     basket: []
 }
 
+
+// Selector
+export const getBasketTotal = (basket) => 
+    basket?.reduce((amount, item) => item.price + amount, 0);
+
+
 const reducer = (state, action) => {
     console.log(action)
     switch(action.type){
@@ -29,6 +35,8 @@ const reducer = (state, action) => {
                 ...state,
                 basket: newBasket
             }
+            // return {...state, basket: state.basket.filter(item => item.id !== action.id)}
+            // this removes all the products with same id
         default:
             return state
     }
